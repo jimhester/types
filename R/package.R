@@ -1,6 +1,6 @@
 `?` <- function(e1, e2) {
   if (missing(e2)) {
-    .Call(unbound)
+    stop("argument missing, with no default")
   } else {
     e1
   }
