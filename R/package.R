@@ -1,15 +1,11 @@
 `?` <- function(e1, e2) {
-  if (interactive() && sys.nframe() <= 1L) {
-    call <- get("?", pos = 3L)
-    return(eval(as.call(list(call, substitute(e1), substitute(e2)))))
-  }
   if (missing(e2)) {
     stop(
       structure(class = c("error", "condition"),
         list(call = sys.call(-1),
              message = "argument is missing, with no default")))
   } else {
-    e1
+    invisible(e1)
   }
 }
 
@@ -50,4 +46,22 @@ remove_types <- function (x) {
         stop("Unknown language class: ", paste(class(x), collapse = "/"),
             call. = FALSE)
     }
+}
+
+.onAttach <- function(libname, pkgname) {
+
+  # If the package is attached add a check for a top level call from the REPL
+  # to the package environment definition
+  # As interactive help is only used on the command line this is only necessary
+  # when the package is attached.
+  ns <- as.environment(paste("package", pkgname, sep = ":"))
+  body(ns$`?`) <- as.call(
+    append(
+      as.list(body(ns$`?`)),
+      quote(
+        if (interactive() && sys.nframe() <= 1L) {
+          call <- get("?", pos = 3L)
+          return(eval(as.call(list(call, substitute(e1), substitute(e2)))))
+        }),
+      after = 1))
 }
