@@ -1,3 +1,9 @@
+#' Documentation Shortcuts
+#'
+#' @param e1 The type of documentation
+#' @param e2 The topic of documentation
+#' @seealso \code{\link[utils]{?}}
+#' @export
 `?` <- function(e1, e2) {
   if (missing(e2)) {
     stop(
@@ -9,7 +15,11 @@
   }
 }
 
-remove_types <- function (x) {
+#' Remove types from a language object
+#'
+#' @param x R language object
+#' @export
+removeTypes <- function (x) {
     recurse <- function(y) {
         lapply(y, remove_types)
     }
@@ -47,6 +57,10 @@ remove_types <- function (x) {
             call. = FALSE)
     }
 }
+
+#' @rdname removeTypes
+#' @export
+remove_types <- removeTypes
 
 .onAttach <- function(libname, pkgname) {
 
