@@ -5,7 +5,7 @@
         list(call = sys.call(-1),
              message = "argument is missing, with no default")))
   } else {
-    invisible(e1)
+    e1
   }
 }
 
