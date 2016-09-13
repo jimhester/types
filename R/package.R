@@ -19,7 +19,11 @@ removeTypes <- function (x) {
     else if (is.call(x)) {
       if (identical(x[[1]], as.symbol("?"))) {
         if (length(x) == 3) {
-          as.call(recurse(x[[2]]))
+          if (length(x[[2]]) == 1) {
+            x[[2]]
+          } else {
+            as.call(recurse(x[[2]]))
+          }
         } else {
           # ?(x) call, This should only occur for arguments with no default
           quote(expr = )
@@ -43,8 +47,8 @@ removeTypes <- function (x) {
         recurse(x)
     }
     else {
-        stop("Unknown language class: ", paste(class(x), collapse = "/"),
-            call. = FALSE)
+        stop("Unknown language class: ", paste(class(x), collapse = "/"), # nocov
+            call. = FALSE) # nocov
     }
 }
 
@@ -62,8 +66,8 @@ remove_types <- removeTypes
       as.list(body(ns$`?`)),
       quote(
         if (interactive() && sys.nframe() <= 1L) {
-          call <- get("?", pos = 3L)
-          return(eval(as.call(list(call, substitute(e1), substitute(e2)))))
+          call <- get("?", pos = 3L) # nocov start
+          return(eval(as.call(list(call, substitute(e1), substitute(e2))))) # nocov end
         }),
       after = 1))
 }

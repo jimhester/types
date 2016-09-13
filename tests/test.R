@@ -37,3 +37,10 @@ stopifnot(all.equal(body(add_untyped), quote({ x + y })))
 add2_untyped <- remove_types(add2)
 stopifnot(identical(formals(add2_untyped), as.pairlist(alist(x = 1, y = ))))
 stopifnot(all.equal(body(add2_untyped), quote({ sum(x, y) })))
+
+stopifnot(identical(remove_types(quote(a ? b)), quote(a)))
+stopifnot(identical(remove_types(quote(a + 1 ? b)), quote(a + 1)))
+
+stopifnot(identical(remove_types(expression(a ? b, a + 1 ? b)), expression(a, a + 1)))
+
+stopifnot(identical(remove_types(list(quote(a ? b), quote(a + 1 ? b))), list(quote(a), quote(a + 1))))
