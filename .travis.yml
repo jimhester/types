@@ -10,5 +10,8 @@ r:
 sudo: false
 cache: packages
 
+r_github_packages:
+  - hadley/devtools
+
 after_success:
   - Rscript -e 'install.packages("covr");covr::codecov()'
