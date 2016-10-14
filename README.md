@@ -1,6 +1,6 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-[![Travis-CI Build Status](https://travis-ci.org/jimhester/types.svg?branch=master)](https://travis-ci.org/jimhester/types) [![Coverage Status](https://img.shields.io/codecov/c/github/jimhester/types/master.svg)](https://codecov.io/github/jimhester/types?branch=master) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/jimhester/types?branch=master&svg=true)](https://ci.appveyor.com/project/jimhester/types)
+[![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/types)](https://cran.r-project.org/package=types) [![Travis-CI Build Status](https://travis-ci.org/jimhester/types.svg?branch=master)](https://travis-ci.org/jimhester/types) [![Coverage Status](https://img.shields.io/codecov/c/github/jimhester/types/master.svg)](https://codecov.io/github/jimhester/types?branch=master) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/jimhester/types?branch=master&svg=true)](https://ci.appveyor.com/project/jimhester/types)
 
 Types for R
 -----------
